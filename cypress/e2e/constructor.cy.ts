@@ -23,7 +23,6 @@ describe('Тест бургерной', () => {
     );
   });
 
-
   describe('Тест добавление ингредиентов в конструктор', () => {
     it('Проверка совпадения названий ингредиентов после добавления', () => {
       cy.get('[data-cy="bun"]:first-of-type')
@@ -37,28 +36,22 @@ describe('Тест бургерной', () => {
             .should('contain.text', bunName.trim());
         });
 
-      // Начинка (первый элемент с классом constructor-element__row)
       cy.get('[data-cy="main"]:first-of-type')
         .find('p.text_type_main-default')
         .invoke('text')
         .then((mainName) => {
           cy.get('[data-cy="main"]:first-of-type button').click();
-
-          // Проверяем, что в списке конструктора первый .constructor-element__row содержит добавленную начинку
           cy.get('span.constructor-element__row')
             .eq(1)
             .find('.constructor-element__text')
             .should('contain.text', mainName.trim());
         });
 
-      // Соус (второй элемент с классом constructor-element__row)
       cy.get('[data-cy="sauce"]:first-of-type')
         .find('p.text_type_main-default')
         .invoke('text')
         .then((sauceName) => {
           cy.get('[data-cy="sauce"]:first-of-type button').click();
-
-          
           cy.get('span.constructor-element__row')
             .eq(2)
             .find('.constructor-element__text')
@@ -67,10 +60,8 @@ describe('Тест бургерной', () => {
     });
   });
 
-
   describe('Тест модальных окон', () => {
     describe('Открытие модального окна', () => {
-
       it('Соответствие ингредиента', () => {
         cy.get(dataCyBunFirst)
           .find('p.text_type_main-default')
@@ -116,11 +107,6 @@ describe('Тест бургерной', () => {
       });
     });
   });
-
-
-  
-
- 
 
   describe('Оформления заказа', () => {
     beforeEach(() => {
